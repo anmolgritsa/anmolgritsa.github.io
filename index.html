@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>advertisement</title>
+
+    <!--
+      Commit the theme before the first paint. Without this, a saved (or OS)
+      dark preference renders a white frame for as long as React is booting.
+      Inline + blocking is intentional: it must finish before any CSS paints.
+      `color-scheme` is set here too so native scrollbars/form controls match.
+    -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var theme = "light";
+        try {
+          var stored = localStorage.getItem("adspace.theme");
+          theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+        } catch (err) {
+          /* storage or matchMedia unavailable — stay light */
+        }
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#111219" : "#f5f7fb");
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-Cyewj8e3.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DvCmkzQF.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
